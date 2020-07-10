@@ -1,3 +1,3 @@
 #!/usr/bin/bash
 
-psql -d postgresql://$IG_USER:$IG_PASSWD@$PG_HOST:$PG_PORT/$IG_DATABASE -f create_tables.sql
+PGPASSWORD=`cat $IG_PASSWORD_FILE` psql -U $IG_USER -h ip-10-10-1-180.us-east-2.compute.internal -p $PG_PORT -d $IG_DATABASE --set=sslmode=require -f create_tables.sql
